@@ -1,0 +1,347 @@
+/* style.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #111;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.top-bar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-bar nav ul li {
+    margin-left: 20px;
+}
+
+.top-bar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+/* Header Main */
+.header-main {
+    background-color: #fff;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.header-main .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; /* Ajusta según el alto de tu navbar */
+}
+
+.logo img {
+    height: 250px;
+    width: auto;
+    object-fit: contain;
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95em;
+}
+
+.main-nav ul li a.button {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.main-nav ul li a.button:hover {
+    background-color: #e05d4f;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #f9f9f9;
+    padding: 60px 0;
+}
+
+.hero .container img {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Welcome Services Section */
+.welcome-services {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.welcome-services .container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.welcome-text {
+    flex: 1;
+}
+
+.welcome-text h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.welcome-text ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.welcome-text ul li {
+    line-height: 1.8;
+    font-size: 1em;
+    color: #555;
+}
+
+.welcome-text ul li strong {
+    color: #111;
+    font-weight: 600;
+}
+
+.appointment h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.appointment .button.secondary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+}
+
+.appointment .button.secondary:hover {
+    background-color: #0056b3;
+}
+
+.contact-options {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.contact-options .option-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: none;
+  transition: color 0.2s;
+}
+
+.contact-options .option-link:hover {
+  color: #007bff;
+  background: none;
+}
+
+.contact-options .option img {
+    height: 20px;
+}
+
+.welcome-image {
+    flex: 1;
+}
+
+.welcome-image img {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    object-fit: cover;
+    max-height: 400px;
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.8em;
+}
+
+/* Carrusel de imágenes */
+.carousel-section {
+    width: 100%;
+    background: #fff;
+    padding: 40px 0 20px 0;
+    display: flex;
+    justify-content: center;
+}
+.carousel-container {
+    position: relative;
+    width: 1200px;
+    height: 400px;
+    max-width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: #f9f9f9;
+}
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.carousel-slide img {
+    width: 1200px;
+    height: 400px;
+    min-width: 1200px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    padding: 0 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    transition: background 0.2s;
+}
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+.carousel-btn.prev {
+    left: 10px;
+}
+.carousel-btn.next {
+    right: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .top-bar .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .top-bar nav ul {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-bar nav ul li {
+        margin: 5px 0;
+    }
+
+    .header-main .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .main-nav ul li {
+        margin: 10px 0;
+    }
+
+    .welcome-services .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .welcome-image {
+        order: -1;
+        margin-bottom: 30px;
+    }
+
+    .contact-options {
+        justify-content: center;
+    }
+
+    .carousel-container {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 1200px) {
+    .carousel-container, .carousel-slide img {
+        width: 100vw;
+        min-width: 100vw;
+        height: 200px;
+    }
+}

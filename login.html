@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Reparación - CAR ZONE</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: row;
+            min-height: 400px;
+            height: 80vh; /* Hace que el contenedor ocupe el 80% de la altura de la ventana */
+        }
+
+        .header {
+            background-color: #111111;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #1923b1;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .search-section {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .search-section input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .search-section button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-section button:hover {
+            background-color: #2980b9;
+        }
+
+        .status-section {
+            padding: 20px;
+        }
+
+        .status-item {
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 15px;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-item h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .status-detail {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar-container {
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            background-color: #2ecc71;
+            height: 100%;
+            width: 0%; /* Se actualizará dinámicamente */
+            border-radius: 5px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        .contact-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-section h2 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .contact-section p {
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .login-image-section {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* la clave */
+            flex: 1;
+            background: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .login-image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            max-width: none;
+            max-height: none;
+        }
+
+        .login-form-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sección de imagen -->
+        <div class="login-image-section">
+            <img src="assets\img\logintoe.jpg" alt="Logo Car Zone" style="max-width: 80%; max-height: 250px;">
+        </div>
+        <!-- Sección de formulario -->
+        <div class="login-form-section">
+            <!-- Header eliminado -->
+            <div class="search-section">
+                <h2>Ingrese su número de orden o placa</h2>
+                <input type="text" id="orderNumber" placeholder="Número de Orden">
+                <input type="text" id="plateNumber" placeholder="Placa del Vehículo">
+                <br>
+                <button onclick="buscarReparacion()">Buscar</button>
+                <div id="errorMessage" style="color: red; margin-top: 10px; display: none;">No se encontró la orden. Por favor, verifique la información.</div>
+            </div>
+
+            <div class="status-section" id="statusDetails" style="display: none;">
+                <h2>Detalles de la Reparación</h2>
+                <div class="status-item">
+                    <h3>Número de Orden: <span id="order"></span></h3>
+                    <p class="status-detail">Placa: <span id="plate"></span></p>
+                    <p class="status-detail">Vehículo: <span id="vehicle"></span></p>
+                    <p class="status-detail">Ingreso: <span id="entryDate"></span></p>
+                    <p class="status-detail">Problema: <span id="problem"></span></p>
+                </div>
+                <div class="status-item">
+                    <h3>Estado de la Reparación: <span id="currentStatus"></span></h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar" style="width: 0;">0%</div>
+                    </div>
+                    <p class="status-detail">Última Actualización: <span id="lastUpdate"></span></p>
+                </div>
+                <div class="status-item">
+                    <h3>Detalles Adicionales</h3>
+                    <p class="status-detail">Técnico: <span id="technician"></span></p>
+                    <p class="status-detail">Repuestos Pendientes: <span id="pendingParts"></span></p>
+                    <p class="status-detail">Comentarios: <span id="comments"></span></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function buscarReparacion() {
+            const orderNumber = document.getElementById("orderNumber").value.trim();
+            const plateNumber = document.getElementById("plateNumber").value.trim();
+            const errorMessage = document.getElementById("errorMessage");
+            const statusDetails = document.getElementById("statusDetails");
+
+            // Simulación de datos de reparación (reemplazar con una llamada a tu API)
+            const datosReparacion = {
+                "ORDEN123": {
+                    plate: "ABC-123",
+                    vehicle: "Toyota Corolla (2020)",
+                    entryDate: "2025-04-08",
+                    problem: "Falla en el motor",
+                    status: "En Reparación",
+                    progress: 60,
+                    lastUpdate: "2025-04-10 10:00",
+                    technician: "Juan Pérez",
+                    pendingParts: "Filtro de aceite, bujías",
+                    comments: "Esperando la llegada de los repuestos."
+                },
+                "DEF-456": {
+                    plate: "DEF-456",
+                    vehicle: "Nissan Sentra (2021)",
+                    entryDate: "2025-04-09",
+                    problem: "Problemas con los frenos",
+                    status: "Listo para Entrega",
+                    progress: 100,
+                    lastUpdate: "2025-04-10 14:00",
+                    technician: "María Gómez",
+                    pendingParts: "",
+                    comments: "Reparación completa. El cliente puede recoger el vehículo."
+                }
+            };
+
+            let resultado = null;
+            if (datosReparacion[orderNumber]) {
+                resultado = datosReparacion[orderNumber];
+            } else {
+                for (const key in datosReparacion) {
+                    if (datosReparacion[key].plate === plateNumber) {
+                        resultado = datosReparacion[key];
+                        break;
+                    }
+                }
+            }
+
+            if (resultado) {
+                errorMessage.style.display = "none";
+                statusDetails.style.display = "block";
+                document.getElementById("order").textContent = orderNumber || "N/A";
+                document.getElementById("plate").textContent = resultado.plate || "N/A";
+                document.getElementById("vehicle").textContent = resultado.vehicle || "N/A";
+                document.getElementById("entryDate").textContent = resultado.entryDate || "N/A";
+                document.getElementById("problem").textContent = resultado.problem || "N/A";
+                document.getElementById("currentStatus").textContent = resultado.status || "N/A";
+                document.getElementById("progressBar").style.width = (resultado.progress || 0) + "%";
+                document.getElementById("progressBar").textContent = (resultado.progress || 0) + "%";
+                document.getElementById("lastUpdate").textContent = resultado.lastUpdate || "N/A";
+                document.getElementById("technician").textContent = resultado.technician || "N/A";
+                document.getElementById("pendingParts").textContent = resultado.pendingParts || "N/A";
+                document.getElementById("comments").textContent = resultado.comments || "N/A";
+            } else {
+                statusDetails.style.display = "none";
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
